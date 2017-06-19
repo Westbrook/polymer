@@ -342,7 +342,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       selectAll() {
         if (!this.multi) return;
         this.__selectedMap.clear();
-        this.items.forEach((idx, item) => {
+        this.items.forEach((item, idx) => {
           this.__selectedMap.set(item, idx);
         });
         this.__updateLinks();
