@@ -315,6 +315,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      /**
+       * Selects the given indexes.
+       *
+       * @param {array} idxs Indexes from `items` array to select
+       */
+      selectIndexes(idxs) {
+        if (!this.multi) {
+          return this.selectIndex(idxs[0]);
+        }
+        this.__selectedMap.clear();
+        let items = idxs.map(function(idx) {
+          let item = this.items[idx];
+          this.__selectedMap.set(item, idx);
+          return item;
+        }.bind(this));
+        this.__updateLinks();
+        this.set('selected', items);
+      }
+
     }
 
     return ArraySelectorMixin;
