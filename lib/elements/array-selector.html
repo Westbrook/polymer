@@ -322,16 +322,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       selectIndexes(idxs) {
         if (!this.multi) {
-          return this.selectIndex(idxs[0]);
+          if (idxs.length) return this.selectIndex(idxs[0]);
+          return;
         }
         this.__selectedMap.clear();
-        let items = idxs.map(function(idx) {
+        let items = idxs.map((idx) => {
           let item = this.items[idx];
           this.__selectedMap.set(item, idx);
           return item;
-        }.bind(this));
+        });
         this.__updateLinks();
         this.set('selected', items);
+      },
+
+      /**
+       * Selects all of the items.
+       *
+       */
+      selectAll() {
+        if (!this.multi) return;
+        this.__selectedMap.clear();
+        this.items.forEach((idx, item) => {
+          this.__selectedMap.set(item, idx);
+        });
+        this.__updateLinks();
+        this.set('selected', this.items);
       }
 
     }
