@@ -352,6 +352,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.set('selected', this.items);
       }
 
+      /**
+       * Deelects all of the items.
+       *
+       */
+      deselectAll() {
+        this.__selectedMap.clear();
+        this.__updateLinks();
+        this.selected = this.selectedItem = null;
+      }
+
     }
 
     return ArraySelectorMixin;
